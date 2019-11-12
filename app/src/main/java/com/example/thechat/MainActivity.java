@@ -14,12 +14,21 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     // monitorar mudanças no estado de autenticação
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    FirebaseDatabase database;
+    DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +45,36 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    String id = user.getUid();
+                    final Query myUser = myRef.child("users").child(id);
+
+                    myUser.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String tipo = (String) dataSnapshot.child("tipo").getValue();
+
+                            if(tipo.equals("professor")){
+                                startActivity(new Intent(MainActivity.this, ProfessorHomeActivity.class));
+                                finish();
+                            }else if(tipo.equals("admin")){
+                                startActivity(new Intent(MainActivity.this, AdminHomeActivity.class));
+                                finish();
+                            }else if(tipo.equals("aluno")){
+                                startActivity(new Intent(MainActivity.this, AlunoHomeActivity.class));
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+//                    FirebaseAuth.getInstance().signOut();
+//                    Toast.makeText(getApplicationContext(), "Não foi possivel identificar tipo de usuario", Toast.LENGTH_SHORT).show();
+
+//                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
                     Log.d("AUTH", "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     Log.d("AUTH", "onAuthStateChanged:signed_out");
@@ -44,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
+
+
+
 
 
 
@@ -74,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+        iniciarFirebase();
     }
 
     @Override
@@ -82,5 +124,10 @@ public class MainActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    private void iniciarFirebase(){
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference();
     }
 }

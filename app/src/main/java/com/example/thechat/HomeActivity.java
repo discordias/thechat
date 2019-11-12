@@ -47,24 +47,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        Button cadAluno = (Button) findViewById(R.id.idCadAluno);
-        cadAluno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, AdminCadastroActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        Button cadProfessor = (Button) findViewById(R.id.idCadProfessor);
-        cadProfessor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, AdminCadastroActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void iniciarFirebase(){

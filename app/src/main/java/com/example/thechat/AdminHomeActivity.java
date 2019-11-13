@@ -20,7 +20,10 @@ public class AdminHomeActivity extends AppCompatActivity {
         cadAluno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle enviarTipo = new Bundle();
+                enviarTipo.putString("tipo", TipoUsuario.ALUNO.getTipo());
                 Intent intent = new Intent(AdminHomeActivity.this, AdminCadastroActivity.class);
+                intent.putExtras(enviarTipo);
                 startActivity(intent);
             }
         });
@@ -29,7 +32,10 @@ public class AdminHomeActivity extends AppCompatActivity {
         cadProfessor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle enviarTipo = new Bundle();
+                enviarTipo.putString("tipo", TipoUsuario.PROFESSOR.getTipo());
                 Intent intent = new Intent(AdminHomeActivity.this, AdminCadastroActivity.class);
+                intent.putExtras(enviarTipo);
                 startActivity(intent);
             }
         });

@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     // monitorar mudanças no estado de autenticação
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private ArrayAdapter<User> arrayAdapter;
+    private ArrayAdapter<Usuario> arrayAdapter;
 
     FirebaseDatabase database;
     DatabaseReference myRef;

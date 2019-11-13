@@ -1,12 +1,12 @@
 package com.example.thechat;
 
-public class User {
+public class Usuario {
     private String email;
     private String nome;
 
-    public User() {}
+    public Usuario() {}
 
-    public User(String email, String nome) {
+    public Usuario(String email, String nome) {
         this.email = email;
         this.nome = nome;
     }

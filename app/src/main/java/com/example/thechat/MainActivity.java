@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.thechat.config.Conexao;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,19 +25,16 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    // monitorar mudanças no estado de autenticação
     private FirebaseAuth.AuthStateListener mAuthListener;
-
-    FirebaseDatabase database;
-    DatabaseReference myRef;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Recuperar instancia do firebase
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = Conexao.getAuthFirebase();
+        myRef = Conexao.getFirebase();
 
 
 
@@ -115,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
-        iniciarFirebase();
     }
 
     @Override
@@ -126,8 +123,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void iniciarFirebase(){
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
-    }
+
 }

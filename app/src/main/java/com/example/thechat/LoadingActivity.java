@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.thechat.config.Conexao;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,8 +23,6 @@ public class LoadingActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-
-    private FirebaseDatabase database;
     private DatabaseReference myRef;
 
     @Override
@@ -34,11 +33,8 @@ public class LoadingActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
-
-
-        // Recuperar instancia do firebase
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = Conexao.getAuthFirebase();
+        myRef = Conexao.getFirebase();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -101,7 +97,7 @@ public class LoadingActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
-        iniciarFirebase();
+
     }
 
     @Override
@@ -112,8 +108,8 @@ public class LoadingActivity extends AppCompatActivity {
         }
     }
 
-    private void iniciarFirebase(){
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
-    }
+//    private void iniciarFirebase(){
+//        database = FirebaseDatabase.getInstance();
+//        myRef = database.getReference();
+//    }
 }

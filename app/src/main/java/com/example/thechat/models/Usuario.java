@@ -1,4 +1,4 @@
-package com.example.thechat;
+package com.example.thechat.models;
 
 public class Usuario {
     private String email;

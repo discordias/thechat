@@ -7,19 +7,24 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
+import com.example.thechat.config.Conexao;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AlunoHomeActivity extends AppCompatActivity {
 
-    FirebaseDatabase database;
-    DatabaseReference myRef;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aluno);
+
+        mAuth = Conexao.getAuthFirebase();
+        myRef = Conexao.getFirebase();
 
         Button logout = (Button) findViewById(R.id.idSairAluno);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -36,14 +41,8 @@ public class AlunoHomeActivity extends AppCompatActivity {
 
     }
 
-    private void iniciarFirebase(){
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
-        iniciarFirebase();
     }
 }

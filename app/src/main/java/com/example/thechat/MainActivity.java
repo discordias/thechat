@@ -93,19 +93,26 @@ public class MainActivity extends AppCompatActivity {
         TextView email = findViewById(R.id.idEmail);
         TextView password = findViewById(R.id.idPassword);
 
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (!task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Falha ao realizar login", Toast.LENGTH_SHORT).show();
+        if(email.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Falha ao realizar login", Toast.LENGTH_SHORT).show();
+        }else{
+
+
+            mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (!task.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "Falha ao realizar login", Toast.LENGTH_SHORT).show();
 //                    Log.w("AUTH", "Falha ao efetuar o Login: ", task.getException());
-                }else{
-                    String txt = "Bem Vindo " + FirebaseAuth.getInstance().getCurrentUser().getEmail();
-                    Toast.makeText(getApplicationContext(), txt, Toast.LENGTH_SHORT).show();
-                    //                    Log.d("AUTH", "Login Efetuado com sucesso!!!");
+                    }else{
+                        String txt = "Bem Vindo " + FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                        Toast.makeText(getApplicationContext(), txt, Toast.LENGTH_SHORT).show();
+                        //                    Log.d("AUTH", "Login Efetuado com sucesso!!!");
+                    }
                 }
-            }
-        });
+            });
+        }
+
 
     }
 

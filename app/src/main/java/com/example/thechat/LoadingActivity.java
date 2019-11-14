@@ -36,6 +36,7 @@ public class LoadingActivity extends AppCompatActivity {
         mAuth = Conexao.getAuthFirebase();
         myRef = Conexao.getFirebase();
 
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

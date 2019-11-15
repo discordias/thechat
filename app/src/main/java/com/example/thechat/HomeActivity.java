@@ -46,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 
 
@@ -59,7 +61,7 @@ public class HomeActivity extends AppCompatActivity {
                String tipo = (String) dataSnapshot.child("tipo").getValue();
                 TextView texto = findViewById(R.id.idMeuEmail);
                 texto.append(nome + " - " + tipo);
-                Toast.makeText(getApplicationContext(), nome, Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

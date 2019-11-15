@@ -45,18 +45,21 @@ public class LoadingActivity extends AppCompatActivity {
                     String id = user.getUid();
                     final Query myUser = myRef.child("users").child(id);
 
+
                     myUser.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String tipo = (String) dataSnapshot.child("tipo").getValue();
 
-                            if(tipo.equals("professor")){
+                            Toast.makeText(LoadingActivity.this, tipo + " testando",Toast.LENGTH_LONG).show();
+
+                            if(tipo != null && tipo.equals("PROFESSOR")){
                                 startActivity(new Intent(LoadingActivity.this, ProfessorHomeActivity.class));
                                 finish();
-                            }else if(tipo.equals("admin")){
+                            }else if(tipo != null && tipo.equals("ADMIN")){
                                 startActivity(new Intent(LoadingActivity.this, AdminHomeActivity.class));
                                 finish();
-                            }else if(tipo.equals("aluno")){
+                            }else if(tipo != null && tipo.equals("ALUNO")){
                                 startActivity(new Intent(LoadingActivity.this, AlunoHomeActivity.class));
                                 finish();
                             }else{

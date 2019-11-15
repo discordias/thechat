@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.example.thechat.config.Conexao;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,8 +23,6 @@ public class LoadingActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-
-    private FirebaseDatabase database;
     private DatabaseReference myRef;
 
     @Override
@@ -33,8 +33,9 @@ public class LoadingActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        // Recuperar instancia do firebase
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = Conexao.getAuthFirebase();
+        myRef = Conexao.getFirebase();
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -44,18 +45,21 @@ public class LoadingActivity extends AppCompatActivity {
                     String id = user.getUid();
                     final Query myUser = myRef.child("users").child(id);
 
+
                     myUser.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String tipo = (String) dataSnapshot.child("tipo").getValue();
 
-                            if(tipo.equals("professor")){
+                            Toast.makeText(LoadingActivity.this, tipo + " testando",Toast.LENGTH_LONG).show();
+
+                            if(tipo != null && tipo.equals("PROFESSOR")){
                                 startActivity(new Intent(LoadingActivity.this, ProfessorHomeActivity.class));
                                 finish();
-                            }else if(tipo.equals("admin")){
+                            }else if(tipo != null && tipo.equals("ADMIN")){
                                 startActivity(new Intent(LoadingActivity.this, AdminHomeActivity.class));
                                 finish();
-                            }else if(tipo.equals("aluno")){
+                            }else if(tipo != null && tipo.equals("ALUNO")){
                                 startActivity(new Intent(LoadingActivity.this, AlunoHomeActivity.class));
                                 finish();
                             }else{
@@ -97,7 +101,7 @@ public class LoadingActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
-        iniciarFirebase();
+
     }
 
     @Override
@@ -108,8 +112,8 @@ public class LoadingActivity extends AppCompatActivity {
         }
     }
 
-    private void iniciarFirebase(){
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
-    }
+//    private void iniciarFirebase(){
+//        database = FirebaseDatabase.getInstance();
+//        myRef = database.getReference();
+//    }
 }

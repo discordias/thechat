@@ -17,6 +17,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthEmailException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
@@ -81,12 +85,11 @@ public class AdminCadastroActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()){
 
-                            Toast.makeText(AdminCadastroActivity.this, "Usuário salvo",Toast.LENGTH_LONG).show();
-
                             FirebaseUser user = task.getResult().getUser();
                             usuario.setId(user.getUid());
                             usuario.salvarUsuario();
                             mAuth.signOut();
+                            Toast.makeText(AdminCadastroActivity.this, "Usuário salvo",Toast.LENGTH_LONG).show();
 
                             mAuth.signInWithEmailAndPassword("admin@email.com", "654321").addOnCompleteListener(AdminCadastroActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -99,8 +102,26 @@ public class AdminCadastroActivity extends AppCompatActivity {
                                 }
                             });
 
+
+                            finish();
+
                         }else{
-                            Toast.makeText(AdminCadastroActivity.this, "Não foi possivel salvar usuario",Toast.LENGTH_LONG).show();
+
+                            String erros = "";
+
+                            try{
+                             throw task.getException();
+                            } catch (FirebaseAuthWeakPasswordException e) {
+                                erros = "Digite um senha mais forte";
+                            } catch (FirebaseAuthInvalidCredentialsException e) {
+                                erros = "E-mail digitado invalido";
+                            } catch (FirebaseAuthUserCollisionException e) {
+                                erros = "E-mail já cadastrado";
+                            } catch (Exception e){
+                                erros = "Erro ao cadastrar";
+                            }
+
+                            Toast.makeText(AdminCadastroActivity.this, "Não foi possivel salvar usuario, " + erros,Toast.LENGTH_LONG).show();
                         }
                     }
                 }

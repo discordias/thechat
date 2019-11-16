@@ -30,63 +30,75 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-//        getSupportActionBar().hide();
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         mAuth = Conexao.getAuthFirebase();
         myRef = Conexao.getFirebase();
 
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    String id = user.getUid();
-                    final Query myUser = myRef.child("users").child(id);
-
-
-                    myUser.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            String tipo = (String) dataSnapshot.child("tipo").getValue();
-
-                            Toast.makeText(LoadingActivity.this, tipo + " testando",Toast.LENGTH_LONG).show();
-
-                            if(tipo != null && tipo.equals("PROFESSOR")){
-                                startActivity(new Intent(LoadingActivity.this, ProfessorHomeActivity.class));
-                                finish();
-                            }else if(tipo != null && tipo.equals("ADMIN")){
-                                startActivity(new Intent(LoadingActivity.this, AdminHomeActivity.class));
-                                finish();
-                            }else if(tipo != null && tipo.equals("ALUNO")){
-                                startActivity(new Intent(LoadingActivity.this, AlunoHomeActivity.class));
-                                finish();
-                            }else{
-                                startActivity(new Intent(LoadingActivity.this, MainActivity.class));
-                                finish();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-//                    FirebaseAuth.getInstance().signOut();
-//                    Toast.makeText(getApplicationContext(), "Não foi possivel identificar tipo de usuario", Toast.LENGTH_SHORT).show();
-
-//                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
-                    Log.d("AUTH", "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
+            public void run() {
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if(currentUser != null){
+                    verificaUsuario(currentUser);
+                }else{
                     startActivity(new Intent(LoadingActivity.this, MainActivity.class));
                     finish();
-                    Log.d("AUTH", "onAuthStateChanged:signed_out");
                 }
-
             }
-        };
+        }, 1000);
+
+
+
+
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser user = firebaseAuth.getCurrentUser();
+//                if (user != null) {
+//                    String id = user.getUid();
+//                    final Query myUser = myRef.child("users").child(id);
+//
+//
+//                    myUser.addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            String tipo = (String) dataSnapshot.child("tipo").getValue();
+//
+//                            Toast.makeText(LoadingActivity.this, tipo + " testando",Toast.LENGTH_LONG).show();
+//
+//                            if(tipo != null && tipo.equals("PROFESSOR")){
+//                                startActivity(new Intent(LoadingActivity.this, ProfessorHomeActivity.class));
+//                                finish();
+//                            }else if(tipo != null && tipo.equals("ADMIN")){
+//                                startActivity(new Intent(LoadingActivity.this, AdminHomeActivity.class));
+//                                finish();
+//                            }else if(tipo != null && tipo.equals("ALUNO")){
+//                                startActivity(new Intent(LoadingActivity.this, AlunoHomeActivity.class));
+//                                finish();
+//                            }else{
+//                                startActivity(new Intent(LoadingActivity.this, MainActivity.class));
+//                                finish();
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                        }
+//                    });
+//
+////                    FirebaseAuth.getInstance().signOut();
+////                    Toast.makeText(getApplicationContext(), "Não foi possivel identificar tipo de usuario", Toast.LENGTH_SHORT).show();
+//
+////                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+//                    Log.d("AUTH", "onAuthStateChanged:signed_in:" + user.getUid());
+//                } else {
+//                    startActivity(new Intent(LoadingActivity.this, MainActivity.class));
+//                    finish();
+//                    Log.d("AUTH", "onAuthStateChanged:signed_out");
+//                }
+//
+//            }
+//        };
 
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
@@ -100,16 +112,50 @@ public class LoadingActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+//        mAuth.addAuthStateListener(mAuthListener);
 
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
+//        if (mAuthListener != null) {
+//            mAuth.removeAuthStateListener(mAuthListener);
+//        }
+    }
+
+    private void verificaUsuario(FirebaseUser currentUser){
+        String id = currentUser.getUid();
+        final Query myUser = myRef.child("users").child(id);
+
+
+        myUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String tipo = (String) dataSnapshot.child("tipo").getValue();
+
+                Toast.makeText(LoadingActivity.this, tipo + " testando",Toast.LENGTH_LONG).show();
+
+                if(tipo != null && tipo.equals("PROFESSOR")){
+                    startActivity(new Intent(LoadingActivity.this, ProfessorHomeActivity.class));
+                    finish();
+                }else if(tipo != null && tipo.equals("ADMIN")){
+                    startActivity(new Intent(LoadingActivity.this, AdminHomeActivity.class));
+                    finish();
+                }else if(tipo != null && tipo.equals("ALUNO")){
+                    startActivity(new Intent(LoadingActivity.this, AlunoHomeActivity.class));
+                    finish();
+                }else{
+                    startActivity(new Intent(LoadingActivity.this, MainActivity.class));
+                    finish();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 //    private void iniciarFirebase(){

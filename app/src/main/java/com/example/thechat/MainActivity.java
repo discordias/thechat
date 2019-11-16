@@ -36,56 +36,6 @@ public class MainActivity extends AppCompatActivity {
         mAuth = Conexao.getAuthFirebase();
         myRef = Conexao.getFirebase();
 
-
-//
-//        mAuthListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                FirebaseUser user = firebaseAuth.getCurrentUser();
-//                if (user != null) {
-//                    String id = user.getUid();
-//                    final Query myUser = myRef.child("users").child(id);
-//
-//                    myUser.addValueEventListener(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                            String tipo = (String) dataSnapshot.child("tipo").getValue();
-//
-//                            if(tipo != null && tipo.equals("PROFESSOR")){
-//                                startActivity(new Intent(MainActivity.this, ProfessorHomeActivity.class));
-//                                finish();
-//                            }else if(tipo != null && tipo.equals("ADMIN")){
-//                                startActivity(new Intent(MainActivity.this, AdminHomeActivity.class));
-//                                finish();
-//                            }else if(tipo != null && tipo.equals("ALUNO")){
-//                                startActivity(new Intent(MainActivity.this, AlunoHomeActivity.class));
-//                                finish();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                        }
-//                    });
-//
-////                    FirebaseAuth.getInstance().signOut();
-////                    Toast.makeText(getApplicationContext(), "Não foi possivel identificar tipo de usuario", Toast.LENGTH_SHORT).show();
-//
-////                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
-//                    Log.d("AUTH", "onAuthStateChanged:signed_in:" + user.getUid());
-//                } else {
-//                    Log.d("AUTH", "onAuthStateChanged:signed_out");
-//                }
-//
-//            }
-//        };
-
-
-
-
-
-
     }
 
 

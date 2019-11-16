@@ -2,7 +2,7 @@ package com.example.thechat.models;
 
 public enum TipoUsuario {
 
-    PROFESSOR("professor"), ALUNO("aluno"), ADMINISTRADOR("admin");
+    PROFESSOR("PROFESSOR"), ALUNO("ALUNO"), ADMIN("ADMIN");
 
     public String tipo;
 

@@ -1,5 +1,7 @@
 package com.example.thechat.models;
 
+import android.support.annotation.NonNull;
+
 import com.example.thechat.config.Conexao;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
@@ -73,5 +75,11 @@ public class Usuario {
         }else{
             return "Novo Cadastro";
         }
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.getEmail();
     }
 }

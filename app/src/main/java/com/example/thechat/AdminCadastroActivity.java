@@ -38,11 +38,14 @@ public class AdminCadastroActivity extends AppCompatActivity {
         myRef = Conexao.getFirebase();
 
 
-
-                Bundle enviarTipo = getIntent().getExtras();
+        Bundle enviarTipo = getIntent().getExtras();
         tipo = enviarTipo.get("tipo").toString();
-        TextView msg = findViewById(R.id.idTipo);
-        msg.setText(tipo);
+        TextView msg = findViewById(R.id.idCadTitulo);
+        msg.setText(Usuario.tituloCadastro(tipo));
+//        msg.setText("Novo cadastro de usuarios");
+
+        Toast.makeText(AdminCadastroActivity.this, TipoUsuario.ALUNO.getTipo(),Toast.LENGTH_LONG).show();
+
 
         Button btCadastrar = (Button) findViewById(R.id.idCadBotao);
         btCadastrar.setOnClickListener(new View.OnClickListener() {

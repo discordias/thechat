@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/idTitileLogin"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="111dp"
+        android:text="@string/login_desc"
+        android:textAlignment="center"
+        android:textSize="@dimen/titulo_size" />
 
     <EditText
         android:id="@+id/idEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/idTitileLogin"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="54dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Email"
@@ -23,10 +35,11 @@
 
     <EditText
         android:id="@+id/idPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/idEmail"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="33dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Senha"
@@ -38,15 +51,18 @@
 
     <Button
         android:id="@+id/idLogin"
-        android:layout_width="211dp"
+        android:layout_width="fill_parent"
         android:layout_height="43dp"
+        android:layout_below="@+id/idEmail"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="119dp"
         android:layout_marginEnd="8dp"
+        android:background="@color/colorPrimaryDark"
         android:onClick="realizarLogin"
-        android:text="Entrar"
+        android:text="@string/login_botal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idPassword" />
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

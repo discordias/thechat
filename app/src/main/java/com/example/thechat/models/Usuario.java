@@ -63,4 +63,15 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public static String tituloCadastro(String tipo){
+
+        if(TipoUsuario.ALUNO.getTipo().equals(tipo)){
+            return "Novo Cadastro de Aluno";
+        }else if(TipoUsuario.PROFESSOR.getTipo().equals(tipo)){
+            return "Novo Cadastro de Professor";
+        }else{
+            return "Novo Cadastro";
+        }
+    }
 }

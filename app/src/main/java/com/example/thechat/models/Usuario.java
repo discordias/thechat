@@ -24,7 +24,6 @@ public class Usuario {
 
     }
 
-    @Exclude
     public String getId() {
         return id;
     }

@@ -1,15 +1,18 @@
 package com.example.thechat.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.thechat.ChatActivity;
 import com.example.thechat.R;
 import com.example.thechat.config.Conexao;
 import com.example.thechat.models.Usuario;
@@ -52,6 +55,12 @@ public class ProfessoresFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        query.removeEventListener(valueEventListenerUsers);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -90,6 +99,24 @@ public class ProfessoresFragment extends Fragment {
 
             }
         };
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ChatActivity.class);
+
+                // recupera dados passados
+                Usuario user = listaUsuario.get(position);
+
+                // enviar para tela de chat
+                intent.putExtra("nome", user.getNome());
+                intent.putExtra("email",user.getEmail());
+                intent.putExtra("id",user.getId());
+
+
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

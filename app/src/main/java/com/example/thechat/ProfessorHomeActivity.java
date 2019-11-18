@@ -1,6 +1,8 @@
 package com.example.thechat;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import com.example.thechat.adapter.TabAdapterProfessor;
 import com.example.thechat.adapter.TabsAdapter;
 import com.example.thechat.config.Conexao;
+import com.example.thechat.fragment.AlunosFragment;
 import com.example.thechat.helper.SlidingTabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -32,18 +35,27 @@ public class ProfessorHomeActivity extends AppCompatActivity {
         mAuth = Conexao.getAuthFirebase();
         myRef = Conexao.getFirebase();
 
-        slidingTabLayout = (SlidingTabLayout) findViewById(R.id.slide_tabs);
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        // configurar slidingTabLayout
-        slidingTabLayout.setDistributeEvenly(true);
-        slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.colorPrimary));
+        AlunosFragment alunosFragment = new AlunosFragment();
+        fragmentTransaction.add(R.id.ll_professor,alunosFragment);
+        fragmentTransaction.commit();
 
-        // configurar adapter
-        TabAdapterProfessor tabsAdapter = new TabAdapterProfessor( getSupportFragmentManager());
-        viewPager.setAdapter(tabsAdapter);
+//        slidingTabLayout = (SlidingTabLayout) findViewById(R.id.slide_tabs);
+//        viewPager = (ViewPager) findViewById(R.id.view_pager);
+//
+//        // configurar slidingTabLayout
+//        slidingTabLayout.setDistributeEvenly(true);
+//        slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.colorPrimary));
+//
+//        // configurar adapter
+//        TabAdapterProfessor tabsAdapter = new TabAdapterProfessor( getSupportFragmentManager());
+//        viewPager.setAdapter(tabsAdapter);
+//
+//        slidingTabLayout.setViewPager(viewPager);
 
-        slidingTabLayout.setViewPager(viewPager);
+
 
         Button logout = (Button) findViewById(R.id.idSairProfessor);
         logout.setOnClickListener(new View.OnClickListener() {

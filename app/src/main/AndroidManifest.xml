@@ -15,7 +15,7 @@
         <activity android:name=".AdminCadastroActivity" />
         <activity android:name=".AdminHomeActivity" />
         <activity android:name=".ProfessorHomeActivity" />
-        <activity android:name=".AlunoHomeActivity" />
+        <activity android:name=".AlunoHomeActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

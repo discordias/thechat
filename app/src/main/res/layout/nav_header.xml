@@ -23,6 +23,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="discordias.uniceplac@mail.com" />
+        android:text="discordias.uniceplac@gmail.com" />
 
 </LinearLayout>

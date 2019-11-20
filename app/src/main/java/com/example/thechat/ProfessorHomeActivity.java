@@ -1,28 +1,32 @@
 package com.example.thechat;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.MenuItem;
 
-import com.example.thechat.adapter.TabAdapterProfessor;
-import com.example.thechat.adapter.TabsAdapter;
 import com.example.thechat.config.Conexao;
 import com.example.thechat.fragment.AlunosFragment;
+import com.example.thechat.fragment.ProfessoresFragment;
 import com.example.thechat.helper.SlidingTabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
-public class ProfessorHomeActivity extends AppCompatActivity {
+public class ProfessorHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
+
+    private DrawerLayout drawer;
 
     private SlidingTabLayout slidingTabLayout;
     private ViewPager viewPager;
@@ -35,12 +39,24 @@ public class ProfessorHomeActivity extends AppCompatActivity {
         mAuth = Conexao.getAuthFirebase();
         myRef = Conexao.getFirebase();
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        // Menu e barra superior
+        Toolbar toolbar = findViewById(R.id.toolbarProfessor);
+        setSupportActionBar(toolbar);
 
-        AlunosFragment alunosFragment = new AlunosFragment();
-        fragmentTransaction.add(R.id.ll_professor,alunosFragment);
-        fragmentTransaction.commit();
+        drawer = findViewById(R.id.drawer_layout);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        if(savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_professor,
+                    new AlunosFragment()).commit();
+        }
 
 //        slidingTabLayout = (SlidingTabLayout) findViewById(R.id.slide_tabs);
 //        viewPager = (ViewPager) findViewById(R.id.view_pager);
@@ -57,17 +73,46 @@ public class ProfessorHomeActivity extends AppCompatActivity {
 
 
 
-        Button logout = (Button) findViewById(R.id.idSairProfessor);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(ProfessorHomeActivity.this, MainActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-            }
-        });
+
+    }
+
+    private void logout(){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(ProfessorHomeActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.nav_logout:
+                this.logout();
+                break;
+            case R.id.nav_aluno:
+                getSupportFragmentManager().beginTransaction().replace(R.id.ll_professor,
+                        new ProfessoresFragment()).commit();
+                break;
+
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(drawer.isDrawerOpen(Gravity.START)){
+            drawer.closeDrawer(Gravity.START);
+        }else{
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }
+
+

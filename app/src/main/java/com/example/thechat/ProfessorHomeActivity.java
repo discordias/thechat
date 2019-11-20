@@ -45,7 +45,7 @@ public class ProfessorHomeActivity extends AppCompatActivity implements Navigati
 
         drawer = findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view_professor);
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
@@ -86,12 +86,12 @@ public class ProfessorHomeActivity extends AppCompatActivity implements Navigati
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
-            case R.id.nav_logout:
+            case R.id.nav_logout_professor:
                 this.logout();
                 break;
             case R.id.nav_aluno:
-                getSupportFragmentManager().beginTransaction().replace(R.id.ll_professor,
-                        new ProfessoresFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_professor,
+                        new AlunosFragment()).commit();
                 break;
 
         }

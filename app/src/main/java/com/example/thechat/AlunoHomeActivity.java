@@ -100,7 +100,7 @@ public class AlunoHomeActivity extends AppCompatActivity implements NavigationVi
                 this.logout();
                 break;
             case R.id.nav_professores:
-                getSupportFragmentManager().beginTransaction().replace(R.id.ll_aluno,
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_aluno,
                         new ProfessoresFragment()).commit();
                 break;
 

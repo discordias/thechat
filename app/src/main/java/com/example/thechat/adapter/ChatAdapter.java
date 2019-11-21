@@ -21,6 +21,7 @@ public class ChatAdapter extends ArrayAdapter<Mensagem> {
     private Context context;
     private ArrayList mensagens;
     private String idUserRemetente;
+    private String currentMensagemUserId = "";
 
     public ChatAdapter(Context context, ArrayList<Mensagem> mensagens, String idUserRemetente) {
         super(context, 0, mensagens);
@@ -43,12 +44,29 @@ public class ChatAdapter extends ArrayAdapter<Mensagem> {
 
             Mensagem mensagem = (Mensagem) mensagens.get(position);
 
-            // Montar a view a partir do xml
-            if(idUserRemetente.equals(mensagem.getIdUsuario())){
-                view = inflater.inflate(R.layout.mensagem_remetente, parent, false);
+            if(this.currentMensagemUserId.equals(mensagem.getIdUsuario())){
+
+
+                // Montar a view a partir do xml
+                if(idUserRemetente.equals(mensagem.getIdUsuario())){
+                    view = inflater.inflate(R.layout.mensagem_remetente, parent, false);
+                }else{
+                    view = inflater.inflate(R.layout.mensagem_destino, parent, false);
+                }
+
             }else{
-                view = inflater.inflate(R.layout.mensagem_destino, parent, false);
+
+                this.currentMensagemUserId = mensagem.getIdUsuario();
+
+                // Montar a view a partir do xml
+                if(idUserRemetente.equals(mensagem.getIdUsuario())){
+                    view = inflater.inflate(R.layout.mensagem_remetente_first, parent, false);
+                }else{
+                    view = inflater.inflate(R.layout.mensagem_destino_first, parent, false);
+                }
             }
+
+
 
             TextView texto = (TextView) view.findViewById(R.id.tv_mensagem);
             texto.setText(mensagem.getMensagem());

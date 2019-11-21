@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorAccent"
     tools:context=".ChatActivity">
 
     <ListView
         android:id="@+id/lv_chat"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/ll_msg"
+        android:padding="12dp"
+        android:divider="@null"
         ></ListView>
 
     <LinearLayout
@@ -23,7 +25,7 @@
         android:layout_alignParentBottom="true">
         <EditText
             android:id="@+id/idMsg"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mensagem"
             android:layout_weight="1"

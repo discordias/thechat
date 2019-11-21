@@ -8,16 +8,14 @@
     android:layout_alignParentBottom="true"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
         android:id="@+id/idTitileLogin"
         android:layout_width="match_parent"
-        android:layout_height="61dp"
+        android:layout_height="280dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="170dp"
-        android:text="@string/login_desc"
+        android:layout_marginTop="-2dp"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/titulo_size" />
+        app:srcCompat="@drawable/logo_completa_laranja" />
 
     <EditText
         android:id="@+id/idEmail"
@@ -30,7 +28,7 @@
         android:layout_marginEnd="23dp"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"

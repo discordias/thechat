@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TheChat</string>
+    <string name="app_name">Dchat</string>
     <string name="cad_botao">Cadastrar</string>
     <string name="login_botal">Entrar</string>
     <string name="login_desc">TheChat Login</string>

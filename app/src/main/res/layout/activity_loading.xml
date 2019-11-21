@@ -7,18 +7,16 @@
     android:background="@color/colorPrimary"
     tools:context=".LoadingActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="203dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="312dp"
-        android:layout_marginEnd="8dp"
-        android:text="TheChat"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="36sp"
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:layout_marginBottom="116dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/imagem_laranja" />
 </android.support.constraint.ConstraintLayout>

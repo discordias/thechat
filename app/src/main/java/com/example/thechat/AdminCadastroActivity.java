@@ -31,6 +31,7 @@ public class AdminCadastroActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private String tipo;
     private Usuario usuario;
+
     private FirebaseAuth mAuth2;
 
     @Override
@@ -46,9 +47,7 @@ public class AdminCadastroActivity extends AppCompatActivity {
         tipo = enviarTipo.get("tipo").toString();
         TextView msg = findViewById(R.id.idCadTitulo);
         msg.setText(Usuario.tituloCadastro(tipo));
-//        msg.setText("Novo cadastro de usuarios");
-
-        Toast.makeText(AdminCadastroActivity.this, TipoUsuario.ALUNO.getTipo(),Toast.LENGTH_LONG).show();
+//        msg.setText("Cadastro de Novo Usuarios");
 
 
         Button btCadastrar = (Button) findViewById(R.id.idCadBotao);
@@ -58,11 +57,15 @@ public class AdminCadastroActivity extends AppCompatActivity {
                 EditText nome = (EditText) findViewById(R.id.idCadNome);
                 EditText email = (EditText) findViewById(R.id.idCadEmail);
                 EditText senha = (EditText) findViewById(R.id.idCadSenha);
+                EditText matricula = (EditText) findViewById(R.id.idCadMatricula);
+                EditText curso = (EditText) findViewById(R.id.idCadCurso);
 
                 usuario = new Usuario();
                 usuario.setEmail(email.getText().toString());
                 usuario.setNome(nome.getText().toString());
                 usuario.setSenha(senha.getText().toString());
+                usuario.setMatricula(matricula.getText().toString());
+                usuario.setCurso(curso.getText().toString());
                 String tipoU = tipo.toUpperCase();
                 usuario.setTipo(TipoUsuario.valueOf(tipoU));
 

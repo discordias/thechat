@@ -6,69 +6,123 @@
     android:layout_height="match_parent"
     tools:context=".AdminCadastroActivity">
 
-    <TextView
-        android:id="@+id/idCadTitulo"
-        android:layout_width="324dp"
-        android:layout_height="89dp"
-        android:layout_marginTop="60dp"
-        android:textAlignment="center"
-        android:textSize="@dimen/titulo_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/idCadEmail"
-        android:layout_width="324dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idCadNome" />
 
     <EditText
         android:id="@+id/idCadNome"
         android:layout_width="323dp"
         android:layout_height="46dp"
-        android:layout_marginTop="228dp"
+        android:layout_marginTop="256dp"
         android:ems="10"
         android:hint="Nome"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/idCadBotao"
+        android:layout_width="326dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginBottom="132dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/cad_botao"
+        android:textColor="@color/textColorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idCadSenha" />
+
+    <EditText
+        android:id="@+id/idCadMatricula"
+        android:layout_width="323dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Matricula"
+        android:inputType="text|numberDecimal"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idCadNome" />
+
+    <EditText
+        android:id="@+id/idCadCurso"
+        android:layout_width="323dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Curso"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idCadMatricula" />
 
     <EditText
         android:id="@+id/idCadSenha"
         android:layout_width="320dp"
-        android:layout_height="44dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Senha"
         android:inputType="textPassword"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idCadEmail" />
 
-    <Button
-        android:id="@+id/idCadBotao"
-        android:layout_width="326dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="192dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/cad_botao"
-        android:textColor="@color/textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <EditText
+        android:id="@+id/idCadEmail"
+        android:layout_width="324dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idCadSenha" />
+        app:layout_constraintTop_toBottomOf="@+id/idCadCurso" />
+
+    <ImageView
+        android:id="@+id/cadLogo"
+        android:layout_width="197dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/texto_logo_laranja" />
+
+    <TextView
+        android:id="@+id/idCadTitulo"
+        android:layout_width="314dp"
+        android:layout_height="113dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="42dp"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/idCadNome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cadLogo"
+        app:layout_constraintVertical_bias="0.0" />
+
+
 </android.support.constraint.ConstraintLayout>

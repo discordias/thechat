@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.thechat.adapter.ChatAdapter;
 import com.example.thechat.config.Conexao;
 import com.example.thechat.models.ChatUsuarios;
 import com.example.thechat.models.Mensagem;
@@ -31,7 +32,7 @@ public class ChatActivity extends AppCompatActivity {
     private Button btnEnviar;
     private ListView listView;
     private ArrayList<Mensagem> mensagens;
-    private ArrayAdapter adapterMsg;
+    private ArrayAdapter<Mensagem> adapterMsg;
     private ValueEventListener valueEventListenerMsg;
     private Query query;
 
@@ -83,11 +84,12 @@ public class ChatActivity extends AppCompatActivity {
         // list view
 
         mensagens = new ArrayList<>();
-        adapterMsg = new ArrayAdapter(
-          ChatActivity.this,
-          android.R.layout.simple_list_item_1,
-          mensagens
-        );
+//        adapterMsg = new ArrayAdapter(
+//          ChatActivity.this,
+//          android.R.layout.simple_list_item_1,
+//          mensagens
+//        );
+        adapterMsg = new ChatAdapter(ChatActivity.this, mensagens, idUserRemetente);
 
         listView.setAdapter( adapterMsg );
 

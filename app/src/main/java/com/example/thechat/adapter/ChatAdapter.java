@@ -60,9 +60,9 @@ public class ChatAdapter extends ArrayAdapter<Mensagem> {
 
                 // Montar a view a partir do xml
                 if(idUserRemetente.equals(mensagem.getIdUsuario())){
-                    view = inflater.inflate(R.layout.mensagem_remetente_first, parent, false);
+                    view = inflater.inflate(R.layout.mensagem_remetente, parent, false);
                 }else{
-                    view = inflater.inflate(R.layout.mensagem_destino_first, parent, false);
+                    view = inflater.inflate(R.layout.mensagem_destino, parent, false);
                 }
             }
 

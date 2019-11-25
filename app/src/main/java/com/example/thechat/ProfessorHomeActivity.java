@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import com.example.thechat.config.Conexao;
 import com.example.thechat.fragment.AlunosFragment;
 import com.example.thechat.fragment.ChatFragment;
+import com.example.thechat.fragment.PerfilFragment;
 import com.example.thechat.fragment.ProfessoresFragment;
 import com.example.thechat.helper.SlidingTabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -97,6 +98,10 @@ public class ProfessorHomeActivity extends AppCompatActivity implements Navigati
             case R.id.nav_message_professor:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_professor,
                         new ChatFragment()).commit();
+                break;
+            case R.id.nav_perfil:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_professor,
+                        new PerfilFragment()).commit();
         }
 
         drawer.closeDrawer(GravityCompat.START);

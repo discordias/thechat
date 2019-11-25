@@ -1,5 +1,6 @@
 package com.example.thechat;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,7 +31,7 @@ public class ChatActivity extends AppCompatActivity {
     private String nomeUser;
     private String idUserDestinatario;
     private EditText msg;
-    private Button btnEnviar;
+    private ImageButton btnEnviar;
     private ListView listView;
     private ArrayList<Mensagem> mensagens;
     private ArrayAdapter<Mensagem> adapterMsg;
@@ -57,13 +59,14 @@ public class ChatActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
         msg = (EditText) findViewById(R.id.idMsg);
-        btnEnviar = (Button) findViewById(R.id.idMsgEnviar);
+        btnEnviar = (ImageButton) findViewById(R.id.idMsgEnviar);
         listView = (ListView) findViewById(R.id.lv_chat);
 
 

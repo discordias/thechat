@@ -14,7 +14,7 @@
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="362dp"
-        android:layout_height="119dp"
+        android:layout_height="105dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/logo_completa_branca" />
 
@@ -22,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="#ffffff"
         android:text="discordias.uniceplac@gmail.com" />
 
 

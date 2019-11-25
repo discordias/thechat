@@ -154,7 +154,6 @@ public class ChatActivity extends AppCompatActivity {
 
 
                 idChat = (String) dataSnapshot.child(idUserDestinatario).child("idChat").getValue();
-                Toast.makeText(ChatActivity.this, idChat + " aqui", Toast.LENGTH_LONG).show();
 
                 if(idChat == null){
 

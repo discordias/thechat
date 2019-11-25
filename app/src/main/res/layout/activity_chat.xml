@@ -34,13 +34,12 @@
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/idMsgEnviar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enviar"
-            android:textColor="@color/colorPrimary"
-            android:background="@color/colorPrimaryDark"/>
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:src="@android:drawable/ic_menu_send" />
 
     </LinearLayout>
 

@@ -78,10 +78,10 @@ public class ChatActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         idUserDestinatario = extra.getString("id");
 
-//        if(extra != null){
-//            nomeUser = extra.getString("nome");
-//
-//        }
+        if(extra != null){
+            this.nomeUser = extra.getString("nome");
+        }
+
         verificaIdChat();
 
         // list view
@@ -154,11 +154,10 @@ public class ChatActivity extends AppCompatActivity {
 
 
                 idChat = (String) dataSnapshot.child(idUserDestinatario).child("idChat").getValue();
-                Toast.makeText(ChatActivity.this, idChat + " aqui", Toast.LENGTH_LONG).show();
 
                 if(idChat == null){
 
-                   setIdChat(idUserRemetente, idUserDestinatario);
+                   setIdChat(idUserRemetente, idUserDestinatario, nomeUser);
                 }
 
                 if(idChat != null ){
@@ -178,7 +177,7 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    private void setIdChat(String idUserRemetente, String idUserDestinatatio){
+    private void setIdChat(String idUserRemetente, String idUserDestinatatio, String nome){
         if(this.idChat == null){
 
             this.idChat = myRef.child("chat").push().getKey();
@@ -186,11 +185,13 @@ public class ChatActivity extends AppCompatActivity {
             chatUsuariosDest.setIdChat(this.idChat);
             chatUsuariosDest.setIdUser(idUserRemetente);
             chatUsuariosDest.setStatus(Boolean.FALSE);
+            chatUsuariosDest.setNome(nome);
             myRef.child("chats_users").child(idUserDestinatatio).child("chats").child(idUserRemetente).setValue(chatUsuariosDest);
             ChatUsuarios chatUsuariosRem = new ChatUsuarios();
             chatUsuariosRem.setIdChat(this.idChat);
             chatUsuariosRem.setIdUser(idUserDestinatatio);
             chatUsuariosRem.setStatus(Boolean.FALSE);
+            chatUsuariosRem.setNome(nome);
             myRef.child("chats_users").child(idUserRemetente).child("chats").child(idUserDestinatatio).setValue(chatUsuariosRem);
 
         }

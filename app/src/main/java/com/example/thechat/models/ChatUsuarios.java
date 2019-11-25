@@ -7,6 +7,7 @@ public class ChatUsuarios {
     private String idChat;
     private String IdUser;
     private Boolean status;
+    private String nome;
 
     public ChatUsuarios(){}
 
@@ -35,9 +36,17 @@ public class ChatUsuarios {
         this.status = status;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     @NonNull
     @Override
     public String toString() {
-        return getIdChat();
+        return getNome();
     }
 }

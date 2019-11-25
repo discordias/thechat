@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.example.thechat.config.Conexao;
 import com.example.thechat.models.ChatUsuarios;
 import com.example.thechat.models.Usuario;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -97,13 +99,10 @@ public class ChatFragment extends Fragment {
 
                 for(DataSnapshot objChat: dataSnapshot.getChildren()){
                     chats = objChat.getValue(ChatUsuarios.class);
-
                     listaChat.add(chats);
-
                 }
 
                 arrayAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -122,8 +121,8 @@ public class ChatFragment extends Fragment {
                 ChatUsuarios chat = listaChat.get(position);
 
                 // enviar para tela de chat
-//                intent.putExtra("nome", chat.getNome());
-//                intent.putExtra("email",chat.getEmail());
+                intent.putExtra("nome", chat.getNome());
+//              intent.putExtra("email",chat.getEmail());
                 intent.putExtra("id",chat.getIdUser());
 
 

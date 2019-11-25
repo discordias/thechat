@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 
 import com.example.thechat.config.Conexao;
+import com.example.thechat.fragment.ChatFragment;
 import com.example.thechat.fragment.ProfessoresFragment;
 import com.example.thechat.helper.SlidingTabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -67,7 +68,7 @@ public class AlunoHomeActivity extends AppCompatActivity implements NavigationVi
 
         if(savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_aluno,
-                    new ProfessoresFragment()).commit();
+                    new ChatFragment()).commit();
         }
 //
 //        slidingTabLayout = (SlidingTabLayout) findViewById(R.id.slide_tabs);
@@ -103,6 +104,9 @@ public class AlunoHomeActivity extends AppCompatActivity implements NavigationVi
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_aluno,
                         new ProfessoresFragment()).commit();
                 break;
+            case R.id.nav_message:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_aluno,
+                        new ChatFragment()).commit();
 
         }
 

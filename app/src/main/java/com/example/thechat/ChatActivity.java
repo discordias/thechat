@@ -75,10 +75,10 @@ public class ChatActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         idUserDestinatario = extra.getString("id");
 
-        if(extra != null){
-            nomeUser = extra.getString("nome");
-
-        }
+//        if(extra != null){
+//            nomeUser = extra.getString("nome");
+//
+//        }
         verificaIdChat();
 
         // list view
@@ -179,11 +179,16 @@ public class ChatActivity extends AppCompatActivity {
         if(this.idChat == null){
 
             this.idChat = myRef.child("chat").push().getKey();
-            ChatUsuarios chatUsuarios = new ChatUsuarios();
-            chatUsuarios.setIdChat(this.idChat);
-
-            myRef.child("chats_users").child(idUserDestinatatio).child("chats").child(idUserRemetente).setValue(chatUsuarios);
-            myRef.child("chats_users").child(idUserRemetente).child("chats").child(idUserDestinatatio).setValue(chatUsuarios);
+            ChatUsuarios chatUsuariosDest = new ChatUsuarios();
+            chatUsuariosDest.setIdChat(this.idChat);
+            chatUsuariosDest.setIdUser(idUserRemetente);
+            chatUsuariosDest.setStatus(Boolean.FALSE);
+            myRef.child("chats_users").child(idUserDestinatatio).child("chats").child(idUserRemetente).setValue(chatUsuariosDest);
+            ChatUsuarios chatUsuariosRem = new ChatUsuarios();
+            chatUsuariosRem.setIdChat(this.idChat);
+            chatUsuariosRem.setIdUser(idUserDestinatatio);
+            chatUsuariosRem.setStatus(Boolean.FALSE);
+            myRef.child("chats_users").child(idUserRemetente).child("chats").child(idUserDestinatatio).setValue(chatUsuariosRem);
 
         }
     }
@@ -193,6 +198,8 @@ public class ChatActivity extends AppCompatActivity {
 
         if(idChat != null ) {
             myRef.child("chat").child(idChat).push().setValue(msg);
+            myRef.child("chats_users").child(idUserDestinatatio).child("chats").child(idUserRemetente).child("status").setValue(Boolean.TRUE);
+            myRef.child("chats_users").child(idUserRemetente).child("chats").child(idUserDestinatatio).child("status").setValue(Boolean.TRUE);
         }
     }
 

@@ -14,6 +14,8 @@
         android:layout_above="@+id/ll_msg"
         android:padding="12dp"
         android:divider="@null"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll"
         ></ListView>
 
     <LinearLayout

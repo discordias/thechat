@@ -93,6 +93,6 @@ public class Usuario {
     @NonNull
     @Override
     public String toString() {
-        return this.getEmail();
+        return this.getNome();
     }
 }

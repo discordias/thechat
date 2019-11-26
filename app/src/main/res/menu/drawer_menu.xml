@@ -19,12 +19,8 @@
             android:title="Professores" />
     </group>
 
-    <item android:title="Outros">
+    <item android:title="">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_school_black_24dp"
-                android:title="Share" />
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_school_black_24dp"

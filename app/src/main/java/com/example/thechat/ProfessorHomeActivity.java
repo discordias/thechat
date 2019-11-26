@@ -102,6 +102,10 @@ public class ProfessorHomeActivity extends AppCompatActivity implements Navigati
             case R.id.nav_perfil:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_professor,
                         new PerfilFragment()).commit();
+                break;
+            case R.id.nav_about_professor:
+                startActivity(new Intent(ProfessorHomeActivity.this, AboutActivity.class));
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);

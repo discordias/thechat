@@ -11,15 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChatActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".AboutActivity"></activity>
+        <activity
+            android:name=".ChatActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".AdminCadastroActivity" />
         <activity android:name=".AdminHomeActivity" />
         <activity android:name=".ProfessorHomeActivity" />
         <activity
             android:name=".AlunoHomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

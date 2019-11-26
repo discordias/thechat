@@ -107,6 +107,10 @@ public class AlunoHomeActivity extends AppCompatActivity implements NavigationVi
             case R.id.nav_message:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_aluno,
                         new ChatFragment()).commit();
+                break;
+            case R.id.nav_about:
+                startActivity(new Intent(AlunoHomeActivity.this, AboutActivity.class));
+                break;
 
         }
 

@@ -18,12 +18,9 @@
             android:title="Alunos" />
     </group>
 
+
     <item android:title="Outros">
         <menu>
-            <item
-                android:id="@+id/nav_share_professor"
-                android:icon="@drawable/ic_school_black_24dp"
-                android:title="Share" />
             <item
                 android:id="@+id/nav_about_professor"
                 android:icon="@drawable/ic_school_black_24dp"
@@ -34,6 +31,7 @@
                 android:title="Logout" />
         </menu>
     </item>
+
 
 
 

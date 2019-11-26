@@ -107,6 +107,9 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
                 intentProfessor.putExtras(enviarTipoProfessor);
                 startActivity(intentProfessor);
                 break;
+            case R.id.nav_about_admin:
+                startActivity(new Intent(AdminHomeActivity.this, AboutActivity.class));
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);

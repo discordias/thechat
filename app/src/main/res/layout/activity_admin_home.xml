@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:id="@+id/drawer_layout"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:background="@android:color/white"
     tools:context=".AdminHomeActivity"
     tools:openDrawer="start">
 

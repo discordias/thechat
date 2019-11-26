@@ -4,27 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@drawable/bg"
+
     tools:context=".ChatActivity">
 
-    <ListView
-        android:id="@+id/lv_chat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/ll_msg"
-        android:padding="12dp"
-
-        android:divider="@null"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll"
-        ></ListView>
+<ListView
+android:divider="@null"
+android:id="@+id/lv_chat"
+android:layout_above="@+id/ll_msg"
+android:layout_height="wrap_content"
+android:layout_width="match_parent"
+android:padding="12dp"
+android:stackFromBottom="true"
+android:transcriptMode="alwaysScroll"></ListView>
 
     <LinearLayout
         android:id="@+id/ll_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@android:color/white"
+        android:background="@drawable/barra_mensagem"
+        android:paddingStart="10dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_alignParentBottom="true">
         <EditText
             android:id="@+id/idMsg"

@@ -3,4 +3,5 @@
     <dimen name="titulo_size">30dp</dimen>
     <dimen name="texto_perfil_size">20dp</dimen>
     <dimen name="texto_mensagem">20dp</dimen>
+    <dimen name="texto_dica">15dp</dimen>
 </resources>

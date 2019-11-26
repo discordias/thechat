@@ -44,13 +44,19 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user = (Usuario) dataSnapshot.getValue(Usuario.class);
-                //Toast.makeText(PerfilActivity.this, user.getNome(), Toast.LENGTH_LONG).show();
+
+                TextView tipoPerfil = findViewById(R.id.tipo_usuario);
+                tipoPerfil.setText(user.getTipo().toString());
+
                 TextView nomePerfil = findViewById(R.id.nome_perfil);
                 nomePerfil.setText(user.getNome());
+
                 TextView emailPerfil = findViewById(R.id.email_perfil);
                 emailPerfil.setText(user.getEmail());
+
                 TextView matriculaPerfil = findViewById(R.id.matricula_perfil);
                 matriculaPerfil.setText(user.getMatricula());
+
                 TextView cursoPerfil = findViewById(R.id.curso_perfil);
                 cursoPerfil.setText(user.getCurso());
             }

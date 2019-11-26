@@ -31,7 +31,14 @@
         <FrameLayout
             android:id="@+id/fragment_container_admin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/logo_completa_laranja" />
+        </FrameLayout>
 
     </LinearLayout>
 

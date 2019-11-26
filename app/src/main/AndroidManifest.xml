@@ -13,9 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".PerfilActivity"></activity>
         <activity android:name=".AboutActivity" />
-        <activity
-            android:name=".ChatActivity"
-            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ChatActivity" />
         <activity android:name=".AdminCadastroActivity" />
         <activity android:name=".AdminHomeActivity" />
         <activity android:name=".ProfessorHomeActivity" />

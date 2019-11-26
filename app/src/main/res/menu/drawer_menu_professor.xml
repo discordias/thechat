@@ -6,11 +6,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_perfil_professor"
-            android:icon="@drawable/ic_school_black_24dp"
+            android:icon="@drawable/ic_profile_menu"
             android:title="Perfil" />
         <item
             android:id="@+id/nav_message_professor"
-            android:icon="@drawable/ic_school_black_24dp"
+            android:icon="@drawable/ic_message_menu"
             android:title="Messagens" />
         <item
             android:id="@+id/nav_aluno"
@@ -23,11 +23,11 @@
         <menu>
             <item
                 android:id="@+id/nav_about_professor"
-                android:icon="@drawable/ic_school_black_24dp"
+                android:icon="@drawable/ic_about_menu"
                 android:title="About" />
             <item
                 android:id="@+id/nav_logout_professor"
-                android:icon="@drawable/ic_school_black_24dp"
+                android:icon="@drawable/ic_logout_menu"
                 android:title="Logout" />
         </menu>
     </item>

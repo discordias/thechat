@@ -133,8 +133,10 @@ public class LoadingActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String tipo = (String) dataSnapshot.child("tipo").getValue();
+                String nome = (String) dataSnapshot.child("nome").getValue();
 
-                Toast.makeText(LoadingActivity.this, tipo + " testando",Toast.LENGTH_LONG).show();
+                Toast.makeText(LoadingActivity.this, "Bem vindo " + nome, Toast.LENGTH_LONG).show();
+                Conexao.setUserLogado(nome);
 
                 if(tipo != null && tipo.equals("PROFESSOR")){
                     startActivity(new Intent(LoadingActivity.this, ProfessorHomeActivity.class));

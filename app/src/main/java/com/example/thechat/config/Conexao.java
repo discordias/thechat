@@ -13,6 +13,7 @@ public class Conexao {
     private static FirebaseAuth mAuth;
     private static FirebaseAuth.AuthStateListener mAuthListener;
     private static FirebaseUser firebaseUser;
+    private static String userLogado;
 
     public static DatabaseReference getFirebase(){
         if(myRef == null){
@@ -20,6 +21,18 @@ public class Conexao {
 
         }
         return myRef;
+    }
+
+    public static String getUserLogado(){
+        if(userLogado != null){
+            return userLogado;
+        }else{
+            return "";
+        }
+    }
+
+    public static void setUserLogado(String nome){
+        userLogado = nome;
     }
 
     public static FirebaseAuth getAuthFirebase(){

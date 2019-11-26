@@ -46,7 +46,7 @@ public class PerfilActivity extends AppCompatActivity {
                 user = (Usuario) dataSnapshot.getValue(Usuario.class);
 
                 TextView tipoPerfil = findViewById(R.id.tipo_usuario);
-                tipoPerfil.setText(user.getTipo().toString());
+                tipoPerfil.setText("PERFIL " + user.getTipo().toString());
 
                 TextView nomePerfil = findViewById(R.id.nome_perfil);
                 nomePerfil.setText(user.getNome());

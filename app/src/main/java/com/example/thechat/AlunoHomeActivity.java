@@ -18,6 +18,7 @@ import com.example.thechat.fragment.ChatFragment;
 import com.example.thechat.fragment.ProfessoresFragment;
 import com.example.thechat.helper.SlidingTabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 public class AlunoHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +26,7 @@ public class AlunoHomeActivity extends AppCompatActivity implements NavigationVi
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
+    private FirebaseUser firebaseUser;
 
     private DrawerLayout drawer;
 
@@ -39,6 +41,7 @@ public class AlunoHomeActivity extends AppCompatActivity implements NavigationVi
         // Conexão
         mAuth = Conexao.getAuthFirebase();
         myRef = Conexao.getFirebase();
+        firebaseUser = Conexao.getFirebaseUser();
 
         // Menu e barra superior
         Toolbar toolbar = findViewById(R.id.toolbarAluno);
@@ -107,6 +110,13 @@ public class AlunoHomeActivity extends AppCompatActivity implements NavigationVi
             case R.id.nav_message:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_aluno,
                         new ChatFragment()).commit();
+                break;
+            case R.id.nav_perfil:
+                Bundle enviarId = new Bundle();
+                enviarId.putString("id", firebaseUser.getUid());
+                Intent intentPerfil = new Intent(AlunoHomeActivity.this, PerfilActivity.class);
+                intentPerfil.putExtras(enviarId);
+                startActivity(intentPerfil);
                 break;
             case R.id.nav_about:
                 startActivity(new Intent(AlunoHomeActivity.this, AboutActivity.class));

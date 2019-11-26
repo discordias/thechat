@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.thechat.ChatActivity;
+import com.example.thechat.PerfilActivity;
 import com.example.thechat.R;
 import com.example.thechat.config.Conexao;
 import com.example.thechat.models.ChatUsuarios;
@@ -127,6 +128,25 @@ public class ChatFragment extends Fragment {
 
 
                 startActivity(intent);
+            }
+        });
+
+        // click longo - abrir perfil
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ChatActivity.class);
+
+                // recupera dados passados
+                ChatUsuarios chat = listaChat.get(position);
+
+                Bundle enviarId = new Bundle();
+                enviarId.putString("id", chat.getIdUser());
+                Intent intentPerfil = new Intent(getContext(), PerfilActivity.class);
+                intentPerfil.putExtras(enviarId);
+                startActivity(intentPerfil);
+
+                return true;
             }
         });
 

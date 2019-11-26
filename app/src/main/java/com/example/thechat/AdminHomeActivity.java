@@ -107,6 +107,13 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
                 intentProfessor.putExtras(enviarTipoProfessor);
                 startActivity(intentProfessor);
                 break;
+            case R.id.nav_perfil_admin:
+                Bundle enviarId = new Bundle();
+                enviarId.putString("id", firebaseUser.getUid());
+                Intent intentPerfil = new Intent(AdminHomeActivity.this, PerfilActivity.class);
+                intentPerfil.putExtras(enviarId);
+                startActivity(intentPerfil);
+                break;
             case R.id.nav_about_admin:
                 startActivity(new Intent(AdminHomeActivity.this, AboutActivity.class));
                 break;

@@ -1,5 +1,6 @@
 package com.example.thechat;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,7 +44,15 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user = (Usuario) dataSnapshot.getValue(Usuario.class);
-                Toast.makeText(PerfilActivity.this, user.getNome(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(PerfilActivity.this, user.getNome(), Toast.LENGTH_LONG).show();
+                TextView nomePerfil = findViewById(R.id.nome_perfil);
+                nomePerfil.setText(user.getNome());
+                TextView emailPerfil = findViewById(R.id.email_perfil);
+                emailPerfil.setText(user.getEmail());
+                TextView matriculaPerfil = findViewById(R.id.matricula_perfil);
+                matriculaPerfil.setText(user.getMatricula());
+                TextView cursoPerfil = findViewById(R.id.curso_perfil);
+                cursoPerfil.setText(user.getCurso());
             }
 
             @Override

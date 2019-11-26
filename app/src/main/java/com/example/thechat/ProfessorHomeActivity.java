@@ -12,15 +12,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.thechat.config.Conexao;
 import com.example.thechat.fragment.AlunosFragment;
 import com.example.thechat.fragment.ChatFragment;
-import com.example.thechat.fragment.PerfilFragment;
-import com.example.thechat.fragment.ProfessoresFragment;
 import com.example.thechat.helper.SlidingTabLayout;
-import com.example.thechat.models.TipoUsuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;

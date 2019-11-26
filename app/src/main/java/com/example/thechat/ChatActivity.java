@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity {
 
-    private String nomeUser;
+    private String nomeUserDestinatario;
     private String idUserDestinatario;
     private EditText msg;
     private ImageButton btnEnviar;
@@ -37,6 +37,7 @@ public class ChatActivity extends AppCompatActivity {
     private ArrayAdapter<Mensagem> adapterMsg;
     private ValueEventListener valueEventListenerMsg;
     private Query query;
+    private String nomeUserRemetente;
 
     private DatabaseReference myRef;
 
@@ -69,18 +70,25 @@ public class ChatActivity extends AppCompatActivity {
         btnEnviar = (ImageButton) findViewById(R.id.idMsgEnviar);
         listView = (ListView) findViewById(R.id.lv_chat);
 
-
         // dados usuario logado
         firebaseUser = Conexao.getFirebaseUser();
         idUserRemetente = firebaseUser.getUid();
         myRef = Conexao.getFirebase();
 
+        this.nomeUserRemetente = Conexao.getUserLogado();
+
+
+
         Bundle extra = getIntent().getExtras();
         idUserDestinatario = extra.getString("id");
 
         if(extra != null){
-            this.nomeUser = extra.getString("nome");
+            this.nomeUserDestinatario = extra.getString("nome");
         }
+
+
+
+
 
         verificaIdChat();
 
@@ -157,7 +165,8 @@ public class ChatActivity extends AppCompatActivity {
 
                 if(idChat == null){
 
-                   setIdChat(idUserRemetente, idUserDestinatario, nomeUser);
+//                   setIdChat(idUserRemetente, idUserDestinatario, nomeUserRemetente,nomeUserDestinatario);
+                    setIdChat(idUserRemetente, idUserDestinatario, nomeUserDestinatario );
                 }
 
                 if(idChat != null ){
@@ -177,7 +186,8 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    private void setIdChat(String idUserRemetente, String idUserDestinatatio, String nome){
+    private void setIdChat(String idUserRemetente, String idUserDestinatatio, String nomeDestinatario ){
+
         if(this.idChat == null){
 
             this.idChat = myRef.child("chat").push().getKey();
@@ -185,13 +195,13 @@ public class ChatActivity extends AppCompatActivity {
             chatUsuariosDest.setIdChat(this.idChat);
             chatUsuariosDest.setIdUser(idUserRemetente);
             chatUsuariosDest.setStatus(Boolean.FALSE);
-            chatUsuariosDest.setNome(nome);
+            chatUsuariosDest.setNome(this.nomeUserRemetente);
             myRef.child("chats_users").child(idUserDestinatatio).child("chats").child(idUserRemetente).setValue(chatUsuariosDest);
             ChatUsuarios chatUsuariosRem = new ChatUsuarios();
             chatUsuariosRem.setIdChat(this.idChat);
             chatUsuariosRem.setIdUser(idUserDestinatatio);
             chatUsuariosRem.setStatus(Boolean.FALSE);
-            chatUsuariosRem.setNome(nome);
+            chatUsuariosRem.setNome(nomeDestinatario);
             myRef.child("chats_users").child(idUserRemetente).child("chats").child(idUserDestinatatio).setValue(chatUsuariosRem);
 
         }

@@ -16,6 +16,7 @@ import com.example.thechat.ChatActivity;
 import com.example.thechat.R;
 import com.example.thechat.config.Conexao;
 import com.example.thechat.models.Usuario;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,6 +67,8 @@ public class ProfessoresFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_professores, container, false);
 
+        myRef = Conexao.getFirebase();
+
         listView = view.findViewById(R.id.lv_professor);
 
         arrayAdapter = new ArrayAdapter<Usuario>(
@@ -74,7 +77,7 @@ public class ProfessoresFragment extends Fragment {
 
         listView.setAdapter(arrayAdapter);
 
-        myRef = Conexao.getFirebase();
+
 
         query = myRef.child("users").orderByChild("tipo").equalTo("PROFESSOR");
 
